@@ -9,12 +9,29 @@ There is no separate Make, CMake, or external toolchain — Zig ships its own C/
 ```
 .
 ├── build.zig               # The entire build system, written in Zig
+├── Template/               # Copy this directory to start each new exercise
+│   ├── build.zig
+│   ├── README.md           # Usage instructions for the template
+│   └── src/
+│       ├── main.zig
+│       ├── c/
+│       │   └── greetFromC.c
+│       └── cpp/
+│           └── greetFromCpp.cpp
 └── src/
     ├── main.zig            # Entry point; calls into C and C++ functions
     ├── c/
     │   └── greetFromC.c    # Any *.c file here is auto-compiled with -std=c23
     └── cpp/
         └── greetFromCpp.cpp # Any *.cpp file here is auto-compiled with -std=c++23
+```
+
+To start a new exercise, copy `Template/` into a new directory and work inside it:
+
+```bash
+cp -r Template/ Exercise01_HelloOpenGL/
+cd Exercise01_HelloOpenGL/
+zig build run
 ```
 
 C and C++ live in separate directories so the build script can apply the right compiler flags to each language by walking only the appropriate tree. Subdirectories under `src/c/` and `src/cpp/` are walked recursively.
